@@ -1,30 +1,41 @@
+import Comments from './Comments';
+import { useState } from 'react';
 
-export default function ImageCard(props) {
+export default function ImageCard({ flort }) {
+  const { comments, image, likes, title } = flort;
+
+  const [commentList, setCommentList] = useState(comments);
+  const [imageSrc, setImageSrc] = useState(image);
+  const [numLikes, setNumLikes] = useState(likes);
+  const [flortTitle, setFlortTitle] = useState(title);
+
+  function incrementLikes(e) {
+    setNumLikes(numLikes + 1);
+  }
+
   return (
-    <div class="image-card">
-      <h2 id="fg-title">Image Title Goes Here</h2>
-      <img alt="Flort" src="./imb/image-placeholder.jpg" className="image" />
-      <div class="likes-section">
-        <button id="like-button" class="like-button">
+    <div className="image-card">
+      <h2>{flortTitle}</h2>
+      <img alt="Flort" src={imageSrc} className="image" />
+      <div className="likes-section">
+        <button onClick={incrementLikes} className="like-button">
           👍
         </button>
-        <span id="fg-likes" class="likes">
-          X Likes
+        <span className="likes">
+          {numLikes} Likes
         </span>
       </div>
-      <ul id="fg-comments" class="comments">
-        <li>This is a fake thing</li>
-        <li>Replace us all with real things</li>
-        <li>Release us from this deception</li>
-      </ul>
-      <form id="comment-form" class="comment-form">
+
+      <Comments comments={commentList} />
+
+      <form className="comment-form">
         <input
-          class="comment-input"
+          className="comment-input"
           type="text"
           name="comment"
           placeholder="Add a comment..."
         />
-        <button class="comment-button" type="submit">
+        <button className="comment-button" type="submit">
           Post
         </button>
       </form>
