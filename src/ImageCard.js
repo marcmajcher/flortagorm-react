@@ -1,21 +1,14 @@
 import Comments from './Comments';
 import LikesSection from './LikesSection';
 import CommentForm from './CommentForm';
-import { useState } from 'react';
 
-export default function ImageCard({ flort, incrementLikes, decrementLikes }) {
-  let { comments, id, image, likes, title } = flort;
-
-  const [commentList, setCommentList] = useState(comments);
-
-  function addComment(content) {
-    const comment = {
-      id: Math.random(),
-      imageId: id,
-      content,
-    };
-    setCommentList([...commentList, comment]);
-  }
+export default function ImageCard({
+  flort,
+  incrementLikes,
+  decrementLikes,
+  addComment,
+}) {
+  const { comments, id, image, likes, title } = flort;
 
   return id ? (
     <div className="image-card">

@@ -20,6 +20,19 @@ export default function App() {
     setFlortData({ ...flortData, likes: flortData.likes - 1 });
   }
 
+  function addComment(content) {
+    const newComment = {
+      id: Math.random(),
+      imageId: flortData.id,
+      content,
+    };
+
+    setFlortData({
+      ...flortData,
+      comments: [...flortData.comments, newComment],
+    });
+  }
+
   return (
     <>
       <h1>FLORTAGORM</h1>
@@ -28,6 +41,7 @@ export default function App() {
           flort={flortData}
           incrementLikes={incrementLikes}
           decrementLikes={decrementLikes}
+          addComment={addComment}
         />
       </div>
     </>
